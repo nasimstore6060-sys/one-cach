@@ -1,64 +1,260 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ون كاش</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OneCash UI</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: sans-serif;
+}
+
+body{
+  background:#f3f4f7;
+}
+
+/* Splash */
+#splash{
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:#f37021;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:999;
+  animation:fadeOut 2.5s forwards 2s;
+}
+
+#splash h1{
+  color:white;
+  font-size:40px;
+  animation:scale 1.5s infinite alternate;
+}
+
+@keyframes fadeOut{
+  to{opacity:0;visibility:hidden;}
+}
+
+@keyframes scale{
+  from{transform:scale(1);}
+  to{transform:scale(1.1);}
+}
+
+/* Header */
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:12px;
+  background:white;
+  box-shadow:0 2px 10px rgba(0,0,0,0.05);
+}
+
+/* Balance */
+.balance{
+  padding:20px;
+}
+
+.balance h1{
+  color:#2f3e7c;
+}
+
+/* Banner */
+.banner{
+  margin:15px;
+  padding:20px;
+  border-radius:15px;
+  background:linear-gradient(45deg,#f37021,#ff7f50);
+  color:white;
+}
+
+/* Grid */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  padding:15px;
+}
+
+.card{
+  background:white;
+  border-radius:12px;
+  padding:20px;
+  text-align:center;
+  box-shadow:0 4px 10px rgba(0,0,0,0.05);
+  transition:0.2s;
+}
+
+.card:active{
+  transform:scale(0.95);
+}
+
+/* Sidebar */
+#sidebar{
+  position:fixed;
+  right:-280px;
+  top:0;
+  width:280px;
+  height:100%;
+  background:#2f3e7c;
+  color:white;
+  z-index:1000;
+  transition:0.3s;
+}
+
+#sidebar.active{
+  right:0;
+}
+
+.profile{
+  padding:20px;
+  text-align:center;
+}
+
+.avatar{
+  width:60px;
+  height:60px;
+  background:#ccc;
+  border-radius:50%;
+  margin:auto;
+}
+
+.profile button{
+  margin-top:10px;
+  padding:5px 10px;
+  border:none;
+  border-radius:20px;
+}
+
+/* Overlay */
+#overlay{
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.3);
+  display:none;
+  z-index:999;
+}
+
+#overlay.active{
+  display:block;
+}
+
+ul{
+  list-style:none;
+  padding:10px;
+}
+
+li{
+  padding:12px;
+  border-bottom:1px solid rgba(255,255,255,0.1);
+}
+</style>
+
 </head>
+
 <body>
 
-<!-- Splash Screen -->
+<!-- Splash -->
 <div id="splash">
-  <div class="logo-box">
-    <img src="assets/logo.png" alt="logo">
-  </div>
+  <h1>ون كاش</h1>
 </div>
+
+<!-- Overlay -->
+<div id="overlay"></div>
 
 <!-- Sidebar -->
 <div id="sidebar">
   <div class="profile">
+    <div class="avatar"></div>
     <h3>نسيم فقيرة</h3>
-    <p>774786786</p>
+    <span>774786786</span><br>
+    <button>حساب مفعل</button>
   </div>
+
   <ul>
     <li>بيانات الحساب</li>
     <li>الحماية</li>
     <li>الخصوصية</li>
     <li>فيديوهات إرشادية</li>
     <li>دعوة صديق</li>
+    <li>العروض</li>
     <li>تواصل معنا</li>
   </ul>
 </div>
 
-<!-- Main Page -->
-<div id="main">
-  
-  <header>
-    <button id="menuBtn">☰</button>
-    <h2>ون كاش</h2>
-  </header>
+<!-- Main -->
+<div id="app">
 
-  <div class="balance">
-    <p>رصيدي</p>
-    <h1>16,598.00</h1>
-  </div>
+<header>
+  <div id="menu">☰</div>
+  <h3>ون كاش</h3>
+  <div>🔔</div>
+</header>
 
-  <div class="banner">
-    <p>خصم 75% عند الدفع</p>
-  </div>
+<section class="balance">
+  <p>رصيدي</p>
+  <h1>16,598.00</h1>
+</section>
 
-  <div class="grid">
-    <div class="card">تحويل أموال</div>
-    <div class="card">استلام حوالات</div>
-    <div class="card">دفع خدمات</div>
-    <div class="card">فواتير</div>
-    <div class="card">سحب نقدي</div>
-    <div class="card">شراء رصيد</div>
-  </div>
+<section class="banner">
+  <h3>خصم %75</h3>
+  <p>عند الدفع عبر ون كاش</p>
+</section>
+
+<section class="grid">
+  <div class="card">تحويل أموال</div>
+  <div class="card">استلام حوالات</div>
+  <div class="card">دفع خدمات</div>
+  <div class="card">فواتير</div>
+  <div class="card">سحب نقدي</div>
+  <div class="card">شراء رصيد</div>
+</section>
 
 </div>
 
-<script src="script.js"></script>
+<script>
+// Sidebar
+const menu = document.getElementById("menu");
+const sidebar = document.getElementById("sidebar");
+const overlay = document.getElementById("overlay");
+
+menu.onclick = () => {
+  sidebar.classList.add("active");
+  overlay.classList.add("active");
+};
+
+overlay.onclick = () => {
+  sidebar.classList.remove("active");
+  overlay.classList.remove("active");
+};
+
+// Swipe
+let startX = 0;
+
+document.addEventListener("touchstart", e => {
+  startX = e.touches[0].clientX;
+});
+
+document.addEventListener("touchend", e => {
+  let endX = e.changedTouches[0].clientX;
+
+  if(startX > endX + 50){
+    sidebar.classList.add("active");
+    overlay.classList.add("active");
+  }
+
+  if(startX < endX - 50){
+    sidebar.classList.remove("active");
+    overlay.classList.remove("active");
+  }
+});
+</script>
+
 </body>
 </html>
